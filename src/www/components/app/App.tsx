@@ -1,17 +1,19 @@
 import React from 'react'
-
 import Layout from '@/components/app/Layout'
-
-import Header from '@/components/app/Header'
-import Main from '@/components/app/Main'
-import Footer from '@/components/app/Footer'
+import useInitialRender from '@/services/hooks/useInitialRender'
+import { useStore } from 'www/services/providers/Store'
+import { Spinner } from 'lib'
 
 export default function App() {
+	const { isLoading } = useStore()
+	useInitialRender()
+
+	if (isLoading) return <Spinner />
 	return (
 		<Layout>
-			<Header />
-			<Main />
-			<Footer />
+			<Layout.Header />
+			<Layout.Main />
+			<Layout.Footer />
 		</Layout>
 	)
 }

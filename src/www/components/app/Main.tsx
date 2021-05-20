@@ -10,6 +10,7 @@ function Main() {
 			.getData('cards')
 			.then((cards: any) => setCards(cards))
 	}, [])
+	console.log(cards)
 
 	return (
 		<div>

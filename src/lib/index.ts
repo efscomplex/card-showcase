@@ -1,2 +1,6 @@
 export * from './Card'
 export * from './Spinner'
+export * from './Btn'
+export * from './Text'
+export * from './modal/Modal'
+export * from './Input'

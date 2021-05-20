@@ -1,17 +1,20 @@
+import { Card } from 'models/Card'
 import React, { useState, createContext, useContext } from 'react'
 
 type Store = {
 	isLoading: boolean
-	store?: any
+	setIsLoading: Function
+	cards: Card[]
+	setCards: Function
 }
-export const StoreContext = createContext<Store>({ isLoading: false })
+export const StoreContext = createContext({} as Store)
 export const useStore = () => useContext(StoreContext)
 
 export const StoreProvider: React.FC = ({ children }) => {
-	const [store, setStore] = useState({})
+	const [cards, setCards] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 
-	const initialState = { isLoading, setIsLoading, store, setStore }
+	const initialState = { isLoading, setIsLoading, cards, setCards }
 
 	return (
 		<StoreContext.Provider value={initialState}>

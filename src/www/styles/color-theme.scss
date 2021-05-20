@@ -1,0 +1,18 @@
+$light: #eaecef;
+$dark: #363636;
+$primary: #e00198;
+
+$bg-color-dark: #171e26;
+$bg: transparent;
+
+$fg: #eaecef;
+$fg-on: #eaecef;
+
+:root {
+	--fg: #eaecef;
+	--fg-on: #eaecefbe;
+	--bg-color: transparent;
+	--color: #{$dark};
+	--primary: #{$primary};
+	--primary-on: #fff;
+}

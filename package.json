@@ -1,34 +1,31 @@
 {
-	"name": "webpack-esbuild",
+	"name": "card-showcase",
 	"version": "1.0.0",
-	"description": "react bundler with webpack and esbuild-loader",
+	"description": "product card showcase",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "webpack --mode production",
-		"dev": "webpack serve --mode development",
-		"start": "npm run dev"
+		"start": "webpack serve --mode development"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/efscomplex/webpack-esbuild.git"
+		"url": "git+https://github.com/efscomplex/card-showcase.git"
 	},
 	"keywords": [
-		"webpack",
-		"esbuild",
+		"card",
 		"react",
-		"bundler",
-		"boilerplate",
-		"scaffolding"
+		"components"
 	],
 	"author": "@easydev",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/efscomplex/webpack-esbuild/issues"
+		"url": "https://github.com/efscomplex/card-showcase/issues"
 	},
-	"homepage": "https://github.com/efscomplex/webpack-esbuild#readme",
+	"homepage": "https://github.com/efscomplex/card-showcase#readme",
 	"devDependencies": {
 		"@types/react": "^17.0.0",
 		"@types/react-dom": "^17.0.0",
+		"@types/styled-components": "^5.1.9",
 		"@typescript-eslint/eslint-plugin": "^4.18.0",
 		"@typescript-eslint/parser": "^4.18.0",
 		"css-loader": "^5.0.1",
@@ -51,6 +48,10 @@
 	},
 	"dependencies": {
 		"react": "^17.0.1",
-		"react-dom": "^17.0.1"
+		"react-dom": "^17.0.1",
+		"react-icons": "^4.2.0",
+		"sass": "^1.32.13",
+		"sass-loader": "^11.1.1",
+		"styled-components": "^5.3.0"
 	}
 }

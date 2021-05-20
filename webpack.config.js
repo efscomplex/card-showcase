@@ -1,6 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-//const Dotenv = require('dotenv-webpack')
+const Dotenv = require('dotenv-webpack')
 const BASE_DIR = path.join(__dirname, './src')
 const DIST_DIR = path.join(__dirname, './dist')
 
@@ -11,7 +11,8 @@ module.exports = {
 		path: DIST_DIR
 	},
 	devServer: {
-		port: process.env.PORT || 8080
+		port: process.env.PORT || 8080,
+		historyApiFallback: true
 	},
 	module: {
 		rules: [
@@ -28,15 +29,46 @@ module.exports = {
 			{
 				test: /\.css$/i,
 				use: ['style-loader', 'css-loader']
+			},
+			{
+				test: /\.(s[ac]ss)$/i,
+				use: [
+					'style-loader',
+					'css-loader',
+					{
+						loader: 'sass-loader',
+						options: {
+							// Prefer `dart-sass`
+							implementation: require('sass')
+						}
+					}
+				]
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: 'asset/resource'
 			}
 		]
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js', '.jsx'],
-		modules: [BASE_DIR, 'node_modules']
+		extensions: [
+			'.tsx',
+			'.ts',
+			'.js',
+			'.jsx',
+			'.png',
+			'.svg',
+			'.scss',
+			'.css'
+		],
+		modules: [BASE_DIR, 'node_modules'],
+		alias: {
+			'@': [path.join(BASE_DIR, 'www')],
+			public: [path.join(BASE_DIR, 'www/public')]
+		}
 	},
 	plugins: [
-		//new Dotenv(),
+		new Dotenv(),
 		new HTMLWebpackPlugin({ template: './src/www/index.html' })
 	]
 }

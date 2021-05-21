@@ -5,14 +5,14 @@ import { useStore } from 'www/services/providers/Store'
 import { Spinner } from 'lib'
 
 export default function App() {
-	const { isLoading } = useStore()
+	const { isLoading, cards } = useStore()
 	useInitialRender()
 
 	if (isLoading) return <Spinner />
 	return (
 		<Layout>
 			<Layout.Header />
-			<Layout.Main />
+			<Layout.Main data={cards} />
 			<Layout.Footer />
 		</Layout>
 	)

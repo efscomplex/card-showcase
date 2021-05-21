@@ -9,11 +9,8 @@ export class Fetch implements Request {
 			method: 'get',
 			...opts
 		}
-		console.log(options)
 
-		return fetch(this.baseUrl + endpoint, options).then((resp) =>
-			resp.json()
-		)
+		return fetch(this.baseUrl + endpoint, options)
 	}
 	public postData(endpoint: string, payload: any, opts?: Options) {
 		const options = {
@@ -21,9 +18,8 @@ export class Fetch implements Request {
 			body: payload,
 			...opts
 		}
-		return fetch(this.baseUrl + endpoint, options).then((resp) =>
-			resp.json()
-		)
+
+		return fetch(this.baseUrl + endpoint, options)
 	}
 	public putData(endpoint: string, payload: any, opts?: Options) {
 		const options = {
@@ -31,17 +27,14 @@ export class Fetch implements Request {
 			body: payload,
 			...opts
 		}
-		return fetch(this.baseUrl + endpoint, options).then((resp) =>
-			resp.json()
-		)
+		return fetch(this.baseUrl + endpoint, options)
 	}
 	public deleteData(endpoint: string, opts?: Options) {
 		const options = {
 			method: 'delete',
 			...opts
 		}
-		return fetch(this.baseUrl + endpoint, options).then((resp) =>
-			resp.json()
-		)
+
+		return fetch(this.baseUrl + endpoint, options)
 	}
 }

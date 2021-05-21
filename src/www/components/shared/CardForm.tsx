@@ -6,21 +6,16 @@ import { useStore } from 'www/services/providers/Store'
 const CardForm: React.FC<any> = ({ setShowModal }) => {
 	const { setCards } = useStore()
 
+	const callabckNewCard = async () => {
+		const cards = await Tiendeo.instance().getCards()
+		setCards(cards)
+		setShowModal(false)
+	}
 	const addNewCard = (e: any) => {
 		e.preventDefault()
-		const els = e.target.elements
+		const formData = new FormData(e.target)
 
-		const payload = {
-			title: els.title.value,
-			description: els.description.value,
-			imageUrl: els.imageUrl.value
-		}
-		Tiendeo.instance()
-			.postData('cards', payload)
-			.then((card) => {
-				setCards((cards: any) => [...cards, card])
-				setShowModal(false)
-			})
+		Tiendeo.instance().addCard(formData).then(callabckNewCard)
 	}
 	return (
 		<Card>
@@ -28,7 +23,7 @@ const CardForm: React.FC<any> = ({ setShowModal }) => {
 			<form
 				onSubmit={addNewCard}
 				style={{
-					padding: '1rem 0',
+					padding: '1rem 0 0',
 					margin: '1rem',
 					alignSelf: 'center'
 				}}>
@@ -39,7 +34,7 @@ const CardForm: React.FC<any> = ({ setShowModal }) => {
 					type='submit'
 					ghost
 					primary='green'
-					style={{ marginTop: '1rem', alignSelf: 'center' }}>
+					style={{ margin: '2.7rem auto 0' }}>
 					Add Card
 				</Btn>
 			</form>

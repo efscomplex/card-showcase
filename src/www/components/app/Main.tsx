@@ -1,24 +1,33 @@
-import { Tiendeo } from 'presentators/request/Tiendeo'
-import React, { useState } from 'react'
 import CardView from '@/components/shared/CardView'
+import { Card } from 'models/Card'
+import React from 'react'
+import styled from 'styled-components'
+import { useStore } from 'www/services/providers/Store'
 
-function Main() {
-	const [cards, setCards] = useState([])
-
-	React.useLayoutEffect(() => {
-		Tiendeo.instance()
-			.getData('cards')
-			.then((cards: any) => setCards(cards))
-	}, [])
-	console.log(cards)
+const Main: React.FC = () => {
+	const { cards } = useStore()
 
 	return (
-		<div>
-			{cards.map((card) => (
-				<CardView {...card} />
+		<CardShower className='shadow'>
+			{cards.map((card: Card) => (
+				<CardView key={card.id} {...card} />
 			))}
-		</div>
+		</CardShower>
 	)
 }
+const CardShower = styled('div')`
+	padding-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+	& > div {
+		gap: 1rem;
+		transition: transform 0.25s ease;
+		&:hover {
+			transform: scale(1.075);
+		}
+	}
+`
 
 export default Main

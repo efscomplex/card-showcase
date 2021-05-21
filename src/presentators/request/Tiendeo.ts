@@ -35,11 +35,18 @@ export class Tiendeo extends Fetch {
 		return {
 			headers: {
 				Authorization: `Bearer ${token}`
+				//'Content-Type': 'application/json'
 			}
 		}
 	}
 	public getUserToken() {
-		return super.getData(this.baseUrl + 'users').then((resp) => resp.text())
+		return super.getData('users').then((resp) => resp.text())
+	}
+	public getCards() {
+		return this.getData('cards').then((resp) => resp.json())
+	}
+	public addCard(payload: any) {
+		return this.postData('cards', payload).then((resp) => resp.json())
 	}
 
 	public getData(endpoint: string) {

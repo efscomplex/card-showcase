@@ -35,7 +35,6 @@ export class Tiendeo extends Fetch {
 		return {
 			headers: {
 				Authorization: `Bearer ${token}`
-				//'Content-Type': 'application/json'
 			}
 		}
 	}
@@ -45,8 +44,20 @@ export class Tiendeo extends Fetch {
 	public getCards() {
 		return this.getData('cards').then((resp) => resp.json())
 	}
-	public addCard(payload: any) {
-		return this.postData('cards', payload).then((resp) => resp.json())
+	public async addCard(payload: any, callback?: Function) {
+		await this.postData('cards', payload).then((resp) => resp.json())
+		const cards = await this.getCards()
+		callback?.(cards)
+	}
+	public async deleteCard(id: string, callback?: Function) {
+		await this.deleteData(`cards/${id}`)
+		const cards = await this.getCards()
+		callback?.(cards)
+	}
+	public async updateCard(id: string, payload: any, callback?: Function) {
+		await this.putData(`cards/${id}`, payload)
+		const cards = await this.getCards()
+		callback?.(cards)
 	}
 
 	public getData(endpoint: string) {

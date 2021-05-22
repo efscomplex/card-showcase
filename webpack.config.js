@@ -69,6 +69,6 @@ module.exports = {
 	},
 	plugins: [
 		new Dotenv(),
-		new HTMLWebpackPlugin({ template: './src/www/index.html' })
+		new HTMLWebpackPlugin({ template: './src/www/public/index.html' })
 	]
 }

@@ -1,4 +1,4 @@
-export * from './Card'
+export * from './card/Card'
 export * from './Spinner'
 export * from './Btn'
 export * from './Text'

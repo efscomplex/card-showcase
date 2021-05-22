@@ -1,19 +1,32 @@
-import { Btn, Text, Modal } from 'lib'
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import { Btn, Text, useModal } from 'lib'
+import { Tiendeo } from 'presentators/request/Tiendeo'
+import React from 'react'
 import { IoAddSharp } from 'react-icons/io5'
-import CardForm from '../shared/CardForm'
+import styled from 'styled-components'
+import { useStore } from 'www/services/providers/Store'
+import CardForm from '../useCases/cards/CardForm'
 
 export default () => {
-	const [showModal, setShowModal] = useState(false)
+	const Modal = useModal()
+	const { setCards } = useStore()
+
+	const createNewCard = (e: any) => {
+		e.preventDefault()
+		const formData = new FormData(e.target)
+		Tiendeo.instance().addCard(formData, (cards: any[]) => {
+			Modal.close()
+			setCards(cards)
+		})
+	}
+
 	return (
 		<Header>
-			<Text.Title>Tiendeo Frontend Cards AP</Text.Title>
-			<Btn icon={IoAddSharp} onClick={() => setShowModal(true)}>
+			<Text.Title>Tiendeo Frontend Cards API</Text.Title>
+			<Btn icon={IoAddSharp} onClick={Modal.open}>
 				Add card
 			</Btn>
-			<Modal show={showModal} setShow={setShowModal}>
-				<CardForm setShowModal={setShowModal} />
+			<Modal className='fade-in'>
+				<CardForm handleOnSubmit={createNewCard} />
 			</Modal>
 		</Header>
 	)
@@ -25,5 +38,6 @@ const Header = styled('header')`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	gap: 2rem;
 `

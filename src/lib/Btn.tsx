@@ -40,6 +40,9 @@ const Button = styled('button')`
 	cursor: pointer;
 	transition: transform 0.1s ease;
 
+	&:hover {
+		${({ ghost, primary }: any) => btnCss({ ghost: !ghost, primary })}
+	}
 	&:active {
 		transform: scale(0.9);
 	}

@@ -1,4 +1,4 @@
-import CardView from '@/components/shared/CardView'
+import CardView from '@/components/useCases/cards/CardView'
 import { Card } from 'models/Card'
 import React from 'react'
 import styled from 'styled-components'
@@ -8,21 +8,23 @@ const Main: React.FC = () => {
 	const { cards } = useStore()
 
 	return (
-		<CardShower className='shadow'>
+		<CardContainer className='shadow'>
 			{cards.map((card: Card) => (
 				<CardView key={card.id} {...card} />
 			))}
-		</CardShower>
+		</CardContainer>
 	)
 }
-const CardShower = styled('div')`
+const CardContainer = styled('div')`
 	padding-top: 3rem;
+
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: flex-start;
 	gap: 2rem;
+
 	& > div {
-		gap: 1rem;
 		transition: transform 0.25s ease;
 		&:hover {
 			transform: scale(1.075);

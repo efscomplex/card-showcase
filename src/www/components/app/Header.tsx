@@ -31,7 +31,7 @@ export default () => {
 			<Btn icon={IoAddSharp} onClick={Modal.open}>
 				Add card
 			</Btn>
-			<Modal className='fade-in shadow'>
+			<Modal className='fade-in'>
 				<CardForm handleOnSubmit={createNewCard} />
 			</Modal>
 		</Header>

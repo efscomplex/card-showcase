@@ -28,8 +28,8 @@ const CardView: React.FC<CardProps> = (props) => {
 	}
 
 	return (
-		<Wrapper {...props} imgSrc={props.imageUrl} className='shadow'>
-			<DeleteBtn onClick={deleteCard}>
+		<Wrapper {...props} imgSrc={props.imageUrl} className='var-shadow'>
+			<DeleteBtn onClick={deleteCard} primary='var(--danger)'>
 				<IoCloseOutline />
 			</DeleteBtn>
 			<EditBtn primary='var(--success)' onClick={Modal.open}>
@@ -55,11 +55,21 @@ const DeleteBtn = styled(Btn)`
 	top: 0;
 	right: 0;
 	border: none;
-	color: var(--danger);
 	background-color: transparent;
 	font-size: 1.2rem;
 `
+const cardWidth = 278
+const cardImgRatio = 3 / 5
 const Wrapper = styled(Card)<CardProps>`
+	width: ${cardWidth}px;
+
+	img {
+		height: ${cardWidth * cardImgRatio}px;
+	}
+
+	&:hover {
+		box-shadow: var(--box-shadow);
+	}
 	& button {
 		opacity: 0;
 		transition: opacity ease 0.25s;

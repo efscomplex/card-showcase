@@ -37,7 +37,9 @@ const CardForm: React.FC<Props> = ({
 					placeholder='Description'
 					defaultValue={context?.description}
 				/>
-				{action === 'add' && <Input name='image' />}
+				{action === 'add' && (
+					<Input name='image' placeholder='image (url)' />
+				)}
 				<Btn
 					type='submit'
 					primary='green'

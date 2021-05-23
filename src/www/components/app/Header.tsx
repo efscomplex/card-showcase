@@ -10,9 +10,15 @@ export default () => {
 	const Modal = useModal()
 	const { setCards } = useStore()
 
-	const createNewCard = (e: any) => {
+	const getBlob = async (url: string) => {
+		return await fetch(url).then((r) => r.blob())
+		//return new File([blobImage], 'image', { type: 'image/png' })
+	}
+	const createNewCard = async (e: any) => {
 		e.preventDefault()
 		const formData = new FormData(e.target)
+		const blob = await getBlob(formData.get('image') as string)
+		formData.set('image', blob)
 		Tiendeo.instance().addCard(formData, (cards: any[]) => {
 			Modal.close()
 			setCards(cards)
@@ -25,7 +31,7 @@ export default () => {
 			<Btn icon={IoAddSharp} onClick={Modal.open}>
 				Add card
 			</Btn>
-			<Modal className='fade-in'>
+			<Modal className='fade-in shadow'>
 				<CardForm handleOnSubmit={createNewCard} />
 			</Modal>
 		</Header>
@@ -36,6 +42,7 @@ const Header = styled('header')`
 	padding: 2rem;
 
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 

@@ -1,8 +1,9 @@
+import { TokenStorage } from './../TokenStorage'
 import { Fetch } from './Fetch'
 
 export class Tiendeo extends Fetch {
 	private static tiendeo: Tiendeo | undefined
-	public tokenStorage: any
+	public tokenStorage: TokenStorage | undefined
 
 	private constructor(public baseUrl: string) {
 		super(baseUrl)
@@ -17,7 +18,7 @@ export class Tiendeo extends Fetch {
 		return this.tiendeo
 	}
 
-	public setTokenStorage(tokenStorage: any) {
+	public setTokenStorage(tokenStorage: TokenStorage) {
 		this.tokenStorage = tokenStorage
 	}
 

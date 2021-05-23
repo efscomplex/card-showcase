@@ -21,7 +21,7 @@ const CardComp: React.FC<CardProps> = ({
 	}
 
 	return (
-		<Wrap className='shadow'>
+		<Wrap {...props}>
 			<Image
 				ref={imgRef}
 				width='100%'

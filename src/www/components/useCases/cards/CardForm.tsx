@@ -2,20 +2,21 @@ import { Btn, Input, Text } from 'lib'
 import React, { FormEventHandler } from 'react'
 import styled from 'styled-components'
 
+type FormAction = 'add' | 'update'
 type Props = {
-	title?: string
-	action?: string
+	action?: FormAction
 	context?: any
 	handleOnSubmit: FormEventHandler
 	[key: string]: any
 }
 const CardForm: React.FC<Props> = ({
-	title,
 	action,
 	context,
 	handleOnSubmit,
 	...props
 }) => {
+	const title = action === 'add' ? 'Add Card' : 'Update Card'
+
 	return (
 		<Wrapper {...props}>
 			<Text.Title>{title}</Text.Title>
@@ -36,12 +37,7 @@ const CardForm: React.FC<Props> = ({
 					placeholder='Description'
 					defaultValue={context?.description}
 				/>
-				<Input
-					name='imageUrl'
-					placeholder='Image (url)'
-					defaultValue={context?.imageUrl}
-					disabled={!!context?.imageUrl}
-				/>
+				{action === 'add' && <Input name='image' />}
 				<Btn
 					type='submit'
 					primary='green'
@@ -60,9 +56,8 @@ const Wrapper = styled('div')`
 
 	border-top: 4px solid var(--primary);
 `
-
 CardForm.defaultProps = {
-	title: 'New card',
-	action: 'Add Card'
+	action: 'add'
 }
+
 export default CardForm

@@ -1,20 +1,21 @@
 import React, { createContext, useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { IoCloseCircleOutline } from 'react-icons/io5'
+import { IoCloseOutline } from 'react-icons/io5'
 import { Wrap, CloseBtn, Content } from './styledModal'
 
 const ModalContext = createContext<any>({})
 
 const ModalWrapper: React.FC<any> = ({ children, ...props }) => {
 	const { isVisible, setIsVisible } = useContext(ModalContext)
-	const className = props.className ? `${props.className} shadow` : 'shadow'
 
 	return isVisible ? (
 		<Wrap>
-			<Content className={className} {...props}>
+			<Content {...props}>
 				{children}
-				<CloseBtn onClick={() => setIsVisible(false)}>
-					<IoCloseCircleOutline />
+				<CloseBtn
+					primary='var(--danger)'
+					onClick={() => setIsVisible(false)}>
+					<IoCloseOutline />
 				</CloseBtn>
 			</Content>
 		</Wrap>

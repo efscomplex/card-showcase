@@ -33,9 +33,6 @@ const Button = styled('button')`
 	align-items: center;
 	border-radius: 6px;
 
-	/* border: 1px solid var(--primary);
-	background-color: transparent;
-	color: var(--primary); */
 	${btnCss}
 	cursor: pointer;
 	transition: transform 0.1s ease;
@@ -47,5 +44,6 @@ const Button = styled('button')`
 		transform: scale(0.9);
 	}
 `
+const LibBtn = styled(Btn)``
 
-export default Btn
+export { Btn as LibBtn }

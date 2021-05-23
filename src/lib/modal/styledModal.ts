@@ -1,3 +1,4 @@
+import { Btn } from './../Btn'
 import styled from 'styled-components'
 
 export const Content = styled('div')`
@@ -26,13 +27,11 @@ export const Wrap = styled('div')`
 		background-color: white;
 	}
 `
-export const CloseBtn = styled('button')`
+export const CloseBtn = styled(Btn)`
 	position: absolute;
-	top: -2rem;
-	right: -2rem;
+	top: -3rem;
+	right: -3rem;
 	border: none;
 	font-size: 2rem;
 	background-color: transparent;
-	cursor: pointer;
-	color: #fff;
 `

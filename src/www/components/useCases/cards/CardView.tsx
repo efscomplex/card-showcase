@@ -1,17 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Btn, useModal, Card } from 'lib'
+import { Btn, Card, useModal } from 'lib'
 import { Tiendeo } from 'presentators/request/Tiendeo'
-import { ImCross } from 'react-icons/im'
+import React from 'react'
+import { IoCloseOutline } from 'react-icons/io5'
+import styled from 'styled-components'
 import { useStore } from 'www/services/providers/Store'
 import CardForm from './CardForm'
-import { IoCloseCircleOutline } from 'react-icons/io5'
 
 type CardProps = {
 	title: string
 	description: string
 	imageUrl: string
 	id: string
+	[key: string]: any
 }
 const CardView: React.FC<CardProps> = (props) => {
 	const { setCards } = useStore()
@@ -28,42 +28,44 @@ const CardView: React.FC<CardProps> = (props) => {
 	}
 
 	return (
-		<Wrapper
-			title={props.title}
-			description={props.description}
-			imgSrc={props.imageUrl}>
-			<CardBtn onClick={deleteCard}>
-				<IoCloseCircleOutline />
-			</CardBtn>
-			<Btn primary='var(--success)' onClick={Modal.open}>
+		<Wrapper {...props} imgSrc={props.imageUrl} className='shadow'>
+			<DeleteBtn onClick={deleteCard}>
+				<IoCloseOutline />
+			</DeleteBtn>
+			<EditBtn primary='var(--success)' onClick={Modal.open}>
 				Edit
-			</Btn>
+			</EditBtn>
 			<Modal className='fade-in'>
 				<CardForm
 					handleOnSubmit={updateCard}
 					title='Update Card'
-					action='Update'
+					action='update'
 					context={props}
 				/>
 			</Modal>
 		</Wrapper>
 	)
 }
-const CardBtn = styled(Btn)`
+const EditBtn = styled(Btn)`
+	margin: 0 1rem 1rem auto;
+	margin-bottom: 12px;
+`
+const DeleteBtn = styled(Btn)`
 	position: absolute;
 	top: 0;
 	right: 0;
 	border: none;
 	color: var(--danger);
+	background-color: transparent;
+	font-size: 1.2rem;
 `
-const Wrapper = styled(Card)`
-	color: red;
-	button {
+const Wrapper = styled(Card)<CardProps>`
+	& button {
 		opacity: 0;
-		transition: transform ease 0.25s;
-		&:hover {
-			opacity: 1;
-		}
+		transition: opacity ease 0.25s;
+	}
+	&:hover button {
+		opacity: 1;
 	}
 `
 

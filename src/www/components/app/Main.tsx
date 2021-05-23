@@ -10,7 +10,7 @@ const Main: React.FC = () => {
 	return (
 		<CardContainer className='shadow'>
 			{cards.map((card: Card) => (
-				<CardView key={card.id} {...card} />
+				<CardView className='fade-in' key={card.id} {...card} />
 			))}
 		</CardContainer>
 	)

@@ -17,14 +17,23 @@ const CardView: React.FC<CardProps> = (props) => {
 	const { setCards } = useStore()
 	const Modal = useModal()
 
-	const deleteCard = () => Tiendeo.instance().deleteCard(props.id, setCards)
+	const deleteCard = () =>
+		Tiendeo.instance()
+			.deleteCard(props.id)
+			.then((cards) => setCards(cards))
 	const updateCard = (e: any) => {
 		e.preventDefault()
 		const formData = new FormData(e.target)
-		Tiendeo.instance().updateCard(props.id, formData, (cards: any[]) => {
-			Modal.close()
-			setCards(cards)
-		})
+		const payload = {
+			title: formData.get('title'),
+			description: formData.get('description')
+		}
+		Tiendeo.instance()
+			.updateCard(props.id, payload)
+			.then((cards) => {
+				Modal.close()
+				setCards(cards)
+			})
 	}
 
 	return (

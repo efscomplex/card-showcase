@@ -11,18 +11,19 @@ export default () => {
 	const { setCards } = useStore()
 
 	const getBlob = async (url: string) => {
-		return await fetch(url).then((r) => r.blob())
-		//return new File([blobImage], 'image', { type: 'image/png' })
+		return await fetch(url).then((resp) => resp.blob())
 	}
 	const createNewCard = async (e: any) => {
 		e.preventDefault()
 		const formData = new FormData(e.target)
 		const blob = await getBlob(formData.get('image') as string)
 		formData.set('image', blob)
-		Tiendeo.instance().addCard(formData, (cards: any[]) => {
-			Modal.close()
-			setCards(cards)
-		})
+		Tiendeo.instance()
+			.addCard(formData)
+			.then((cards) => {
+				Modal.close()
+				setCards(cards)
+			})
 	}
 
 	return (

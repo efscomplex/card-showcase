@@ -28,7 +28,6 @@ export class Tiendeo extends Fetch {
 		}
 		return this.tiendeo
 	}
-
 	getAuthOptions() {
 		if (!this.tokenStorage) throw Error('token storage was not setted.')
 		const token = this.tokenStorage.getToken()
@@ -43,34 +42,32 @@ export class Tiendeo extends Fetch {
 		return super.getData('users').then((resp) => resp.text())
 	}
 	public getCards() {
-		return this.getData('cards').then((resp) => resp.json())
+		return super
+			.getData('cards', this.getAuthOptions())
+			.then((resp) => resp.json())
 	}
-	public async addCard(payload: any, callback?: Function) {
-		await this.postData('cards', payload).then((resp) => resp.json())
+	public async addCard(payload: any) {
+		await super.postData('cards', payload, this.getAuthOptions())
 		const cards = await this.getCards()
-		callback?.(cards)
+		return cards
 	}
-	public async deleteCard(id: string, callback?: Function) {
-		await this.deleteData(`cards/${id}`)
+	public async deleteCard(id: string) {
+		await super.deleteData(`cards/${id}`, this.getAuthOptions())
 		const cards = await this.getCards()
-		callback?.(cards)
+		return cards
 	}
-	public async updateCard(id: string, payload: any, callback?: Function) {
-		await this.putData(`cards/${id}`, payload)
+	public async updateCard(id: string, payload: any) {
+		if (!this.tokenStorage) throw Error('token storage was not setted.')
+		const token = this.tokenStorage.getToken()
+		const options = {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json'
+			}
+		}
+		const data = JSON.stringify(payload)
+		await super.putData(`cards/${id}`, data, options)
 		const cards = await this.getCards()
-		callback?.(cards)
-	}
-
-	public getData(endpoint: string) {
-		return super.getData(endpoint, this.getAuthOptions())
-	}
-	public postData(endpoint: string, payload: any) {
-		return super.postData(endpoint, payload, this.getAuthOptions())
-	}
-	public putData(endpoint: string, payload: any) {
-		return super.putData(endpoint, payload, this.getAuthOptions())
-	}
-	public deleteData(endpoint: string) {
-		return super.deleteData(endpoint, this.getAuthOptions())
+		return cards
 	}
 }

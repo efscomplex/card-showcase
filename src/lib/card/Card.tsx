@@ -1,6 +1,6 @@
 import React, { createRef } from 'react'
 import styled from 'styled-components'
-import imgFallback from './fallbackImg'
+import imgFallback from './fallbackImg.png'
 import { Wrap, Image, Content } from './cardStyles'
 
 type CardProps = {

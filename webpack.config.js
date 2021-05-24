@@ -24,7 +24,7 @@ module.exports = {
 					target: 'es2015'
 				},
 				include: [BASE_DIR],
-				exclude: [/node_modules/]
+				exclude: [/node_modules/, /__tests__/]
 			},
 			{
 				test: /\.css$/i,

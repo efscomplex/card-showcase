@@ -1,4 +1,4 @@
-import { Btn } from './../Btn'
+import { Btn } from 'lib'
 import styled from 'styled-components'
 
 export const Content = styled('div')`

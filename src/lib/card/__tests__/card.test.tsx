@@ -16,15 +16,4 @@ describe('Card Component', () => {
 		)
 		expect(screen.getByText(description)).toHaveTextContent(description)
 	})
-	test(`A card shows an ${description}`, async () => {
-		render(
-			<Card
-				title={title}
-				description={description}
-				imgSrc='fake_image_url'
-			/>
-		)
-		const container = document.querySelector('div')
-		expect(container).toHaveTextContent(title)
-	})
 })

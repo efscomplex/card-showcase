@@ -4,9 +4,9 @@ This project was bootstrapped with [Webpack Esbuild](https://github.com/efscompl
 
 ## Project Structure
 
-You will find the _'www'_ folder inside the project source, that's where you will work with the framework related tools. In this case we are using React library, but you can choose your preferred framework to render the views.
+You will find the _'www'_ folder inside the project source, that's where is placed the main application. In the folder _'lib'_ is placed some react UI components to speed up the development.
 
-Also, you will find ...
+All the other folders inside the source (src) conforms the infrastructure of the application, getting an independent module to make api requests.
 
 ## Available Scripts
 
@@ -20,11 +20,6 @@ Open [http://localhost:8090](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
@@ -32,3 +27,27 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+### `yarn test`
+
+Launches the test runner Jest
+
+### `yarn test:watch`
+
+Launches the test runner Jest in the interactive watch mode
+
+### `yarn build:container`
+
+Build a docker image that contains the whole app. It can be runned with the script below.
+
+### `yarn docker:start`
+
+Up a server hosted in localhost:8080 in such a way that the app will be running if the browser is open.
+This comand is executed through the script docker.sh placed in the sripts folder.
+
+## What to improve?
+
+-   SEO
+-   Error handling consuming the API
+-   The global store it the application grows
+-   Empty fields from a Card form

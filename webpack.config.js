@@ -8,7 +8,8 @@ module.exports = {
 	entry: path.resolve(__dirname, './src/www/index.tsx'),
 	output: {
 		filename: 'index.js',
-		path: DIST_DIR
+		path: DIST_DIR,
+		publicPath: DIST_DIR
 	},
 	devServer: {
 		port: process.env.PORT || 8080,

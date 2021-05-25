@@ -1,0 +1,6 @@
+node_modules
+.vscode
+coverage
+uml
+dist
+npm-debug.log

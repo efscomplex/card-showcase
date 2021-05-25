@@ -6,6 +6,8 @@
 	"scripts": {
 		"build": "webpack --mode production",
 		"start": "webpack serve --mode development",
+		"docker:start": "webpack serve --host 0.0.0.0 --inline --content-base ./dist --mode production",
+		"build:container": "sh scripts/docker.sh",
 		"test": "jest",
 		"test:watch": "jest --watch"
 	},

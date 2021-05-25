@@ -51,3 +51,4 @@ This comand is executed through the script docker.sh placed in the sripts folder
 -   Error handling consuming the API
 -   The global store it the application grows
 -   Empty fields from a Card form
+-   Add a infinity scroll for a bunch of cards.

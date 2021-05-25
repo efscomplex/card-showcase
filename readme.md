@@ -49,6 +49,12 @@ This comand is executed through the script docker.sh placed in the sripts folder
 
 -   SEO
 -   Error handling consuming the API
--   The global store it the application grows
--   Empty fields from a Card form
--   Add a infinity scroll for a bunch of cards.
+-   Optimization
+    -   Overall Performance
+    -   Code Splitting
+-   Testing
+    -   For all _'lib'_ components
+    -   hight coverage for app components
+-   Well structured global store if the application grows
+-   Handle empty fields from a Card form
+-   Add a infinity scroll for a bunch of cards

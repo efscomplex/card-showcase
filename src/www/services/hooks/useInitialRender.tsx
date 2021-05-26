@@ -28,10 +28,13 @@ const useInitialRender = () => {
 	const { setIsLoading, setCards } = useStore()
 
 	React.useLayoutEffect(() => {
-		initialRender().then((cards: Card[]) => {
-			setCards(cards)
-			setIsLoading(false)
-		})
+		initialRender()
+			.then((cards: Card[]) => {
+				setCards(cards)
+			})
+			.finally(() => {
+				setIsLoading(false)
+			})
 	}, [])
 }
 export default useInitialRender

@@ -38,12 +38,11 @@ Launches the test runner Jest in the interactive watch mode
 
 ### `yarn build:container`
 
-Build a docker image that contains the whole app. It can be runned with the script below.
+Build a docker image and run a container with the app running in the 8080 port. You can ckeck it by opening the browser in localhost:8080.
 
 ### `yarn docker:start`
 
-Up a server hosted in localhost:8080 in such a way that the app will be running if the browser is open.
-This comand is executed through the script docker.sh placed in the sripts folder.
+Up a server hosted speccially for the container. This command will be fire with the script before inside the container and is executed through the script docker.sh placed in the sripts folder.
 
 ## What to improve?
 

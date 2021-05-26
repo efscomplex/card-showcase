@@ -20,15 +20,13 @@ const Main: React.FC = () => {
 		<div>
 			<CardFilter>
 				{(options: any, target: string) => (
-					<CardContainer>
-						<Map
-							from={cards}
-							filter={getCardFilter(options, target)}
-							render={render}
-							as={CardContainer}
-							sort={options === 'date' && dateSort}
-						/>
-					</CardContainer>
+					<Map
+						from={cards}
+						filter={getCardFilter(options, target)}
+						render={render}
+						as={CardContainer}
+						sort={options === 'date' && dateSort}
+					/>
 				)}
 			</CardFilter>
 		</div>

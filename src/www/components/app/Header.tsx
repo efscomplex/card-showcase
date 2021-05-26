@@ -1,5 +1,5 @@
 import { Btn, Text, useModal } from 'lib'
-import { Tiendeo } from 'presentators/request/Tiendeo'
+import { Tiendeo } from 'infrastructure/request/Tiendeo'
 import React from 'react'
 import { IoAddSharp } from 'react-icons/io5'
 import styled from 'styled-components'

@@ -1,4 +1,4 @@
-import { TokenStorage } from './../TokenStorage'
+import { TokenStorage } from '../TokenStorage'
 import { Fetch } from './Fetch'
 
 export class Tiendeo extends Fetch {

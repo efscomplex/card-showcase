@@ -1,6 +1,6 @@
 import React from 'react'
-import { TokenStorage } from 'presentators/TokenStorage'
-import { Tiendeo } from 'presentators/request/Tiendeo'
+import { TokenStorage } from 'infrastructure/TokenStorage'
+import { Tiendeo } from 'infrastructure/request/Tiendeo'
 import { TIENDEO_URL, TIENDEO_TOKEN_NAME } from 'www/config'
 import { useStore } from '@/services/providers/Store'
 import { Card } from 'models/Card'

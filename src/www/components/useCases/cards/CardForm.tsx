@@ -32,14 +32,12 @@ const CardForm: React.FC<Props> = ({
 					placeholder='Title'
 					defaultValue={context?.title}
 					required
-					help='title is required'
 				/>
 				<Input
 					name='description'
 					placeholder='Description'
 					defaultValue={context?.description}
 					required
-					help='description is required'
 				/>
 				{action === 'add' && (
 					<Input name='image' placeholder='image (url)' />

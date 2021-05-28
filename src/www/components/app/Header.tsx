@@ -5,26 +5,10 @@ import { IoAddSharp } from 'react-icons/io5'
 import styled from 'styled-components'
 import { useStore } from 'www/services/providers/Store'
 import CardForm from '../useCases/cards/CardForm'
+import useCardRequest from 'www/services/hooks/useCardRequest'
 
 export default () => {
-	const Modal = useModal()
-	const { setCards } = useStore()
-
-	const getBlob = async (url: string) => {
-		return await fetch(url).then((resp) => resp.blob())
-	}
-	const createNewCard = async (e: any) => {
-		e.preventDefault()
-		const formData = new FormData(e.target)
-		const blob = await getBlob(formData.get('image') as string)
-		formData.set('image', blob)
-		Tiendeo.instance()
-			.addCard(formData)
-			.then((cards) => {
-				Modal.close()
-				setCards(cards)
-			})
-	}
+	const { createCard, Modal } = useCardRequest()
 
 	return (
 		<Header>
@@ -33,7 +17,7 @@ export default () => {
 				Add card
 			</Btn>
 			<Modal className='fade-in'>
-				<CardForm handleOnSubmit={createNewCard} />
+				<CardForm handleOnSubmit={createCard} />
 			</Modal>
 		</Header>
 	)

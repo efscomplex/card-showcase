@@ -5,6 +5,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import styled from 'styled-components'
 import { useStore } from 'www/services/providers/Store'
 import CardForm from './CardForm'
+import useCardRequest from 'www/services/hooks/useCardRequest'
 
 type CardProps = {
 	title: string
@@ -14,31 +15,11 @@ type CardProps = {
 	[key: string]: any
 }
 const CardView: React.FC<CardProps> = (props) => {
-	const { setCards } = useStore()
-	const Modal = useModal()
-
-	const deleteCard = () =>
-		Tiendeo.instance()
-			.deleteCard(props.id)
-			.then((cards) => setCards(cards))
-	const updateCard = (e: any) => {
-		e.preventDefault()
-		const formData = new FormData(e.target)
-		const payload = {
-			title: formData.get('title'),
-			description: formData.get('description')
-		}
-		Tiendeo.instance()
-			.updateCard(props.id, payload)
-			.then((cards) => {
-				Modal.close()
-				setCards(cards)
-			})
-	}
+	const { Modal, deleteCard, updateCard } = useCardRequest()
 
 	return (
 		<Wrapper {...props} imgSrc={props.imageUrl} className='var-shadow'>
-			<DeleteBtn onClick={deleteCard} primary='var(--danger)'>
+			<DeleteBtn onClick={deleteCard(props.id)} primary='var(--danger)'>
 				<IoCloseOutline />
 			</DeleteBtn>
 			<EditBtn primary='var(--success)' onClick={Modal.open}>
@@ -46,7 +27,7 @@ const CardView: React.FC<CardProps> = (props) => {
 			</EditBtn>
 			<Modal className='fade-in'>
 				<CardForm
-					handleOnSubmit={updateCard}
+					handleOnSubmit={updateCard(props.id)}
 					title='Update Card'
 					action='update'
 					context={props}

@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-export const Input = styled('input')`
+type InputProps = {
+	help?: string
+}
+export const Input = styled('input')<InputProps>`
 	width: 12rem;
 	display: block;
 	margin-bottom: 2rem;
@@ -14,5 +17,12 @@ export const Input = styled('input')`
 	}
 	&:placeholder {
 		color: inherit;
+	}
+	&:invalid {
+		border-bottom: 1px solid var(--danger, red);
+	}
+
+	&:invalid:required {
+		color: var(--danger, red);
 	}
 `

@@ -47,7 +47,7 @@ Up a server hosted speccially for the container. This command will be fire with 
 ## What to improve?
 
 -   SEO
--   Error handling consuming the API
+-   <del>Error handling consuming the API</del>
 -   Optimization
     -   Overall Performance
     -   Code Splitting
@@ -55,5 +55,5 @@ Up a server hosted speccially for the container. This command will be fire with 
     -   For all _'lib'_ components
     -   hight coverage for app components
 -   Well structured global store if the application grows
--   Handle empty fields from a Card form
+-   <del>Handle empty fields from a Card form</del>
 -   Add a infinity scroll for a bunch of cards
